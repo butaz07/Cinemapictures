@@ -1,0 +1,48 @@
+@model Cinemapictures.Models.Entities.Invoice
+
+@{ ViewData["Title"] = "Detalles de la Factura"; }
+
+<h1>Detalles de la Factura</h1>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+   
+    <dl class="row">
+        <dt class="col-sm-2">
+            
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd class="col-sm-10">
+           
+            @Html.DisplayFor(model => model.Client.Name)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.Name)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+    </dl>
+</div>
+<div>
+    
+    <a asp-action="Edit" asp-route-id="@Model?.InvoiceId" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+</div>

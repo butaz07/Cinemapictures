@@ -1,0 +1,62 @@
+
+-->
+@model Cinemapictures.Models.Entities.Invoice
+
+@{ ViewData["Title"] = "Crear Factura"; }
+
+<h1>Crear Factura</h1>
+
+<h4>Factura</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+       
+        <form asp-action="Create">
+            
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            
+            <div class="form-group">
+                
+                <label asp-for="ClientId" class="control-label">Cliente</label>
+               
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+            </div>
+
+            
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="control-label">Empleado</label>
+                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+            </div>
+
+            
+
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                
+                <input asp-for="Date" class="form-control" />
+                
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TotalAmount" class="control-label"></label>
+                <input asp-for="TotalAmount" class="form-control" />
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+
+            
+
+            <div class="form-group mt-3">
+                
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
