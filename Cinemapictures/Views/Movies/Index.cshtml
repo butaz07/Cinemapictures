@@ -27,6 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.language)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DailyRentalCost)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -46,8 +49,11 @@
                 @Html.DisplayFor(modelItem => item.Director)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.language)
-            </td>
+                    @Html.DisplayFor(modelItem => item.language)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DailyRentalCost)
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MoviesId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MoviesId">Details</a> |

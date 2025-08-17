@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,19 +10,19 @@ using Cinemapictures.Models.Entities;
 
 namespace Cinemapictures.Controllers
 {
-    public class MoviesController : Controller
+    public class EmployeesController : Controller
     {
         private readonly DataContex _context;
 
-        public MoviesController(DataContex context)
+        public EmployeesController(DataContex context)
         {
             _context = context;
         }
 
-        
+       
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movies.ToListAsync());
+            return View(await _context.Employees.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -31,14 +32,14 @@ namespace Cinemapictures.Controllers
                 return NotFound();
             }
 
-            var movies = await _context.Movies
-                .FirstOrDefaultAsync(m => m.MoviesId == id);
-            if (movies == null)
+            var employee = await _context.Employees
+                .FirstOrDefaultAsync(m => m.EmployeeId == id);
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            return View(movies);
+            return View(employee);
         }
 
         public IActionResult Create()
@@ -49,15 +50,15 @@ namespace Cinemapictures.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Movies movies)
+        public async Task<IActionResult> Create( Employee employee)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movies);
+                _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(movies);
+            return View(employee);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -67,19 +68,20 @@ namespace Cinemapictures.Controllers
                 return NotFound();
             }
 
-            var movies = await _context.Movies.FindAsync(id);
-            if (movies == null)
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
             {
                 return NotFound();
             }
-            return View(movies);
+            return View(employee);
         }
 
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MoviesId,MovieTitle,Kind,Year,Director,language,DailyRentalCost")] Movies movies)
+        public async Task<IActionResult> Edit(int id, Employee employee)
         {
-            if (id != movies.MoviesId)
+            if (id != employee.EmployeeId)
             {
                 return NotFound();
             }
@@ -88,12 +90,12 @@ namespace Cinemapictures.Controllers
             {
                 try
                 {
-                    _context.Update(movies);
+                    _context.Update(employee);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MoviesExists(movies.MoviesId))
+                    if (!EmployeeExists(employee.EmployeeId))
                     {
                         return NotFound();
                     }
@@ -104,7 +106,7 @@ namespace Cinemapictures.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movies);
+            return View(employee);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -114,34 +116,33 @@ namespace Cinemapictures.Controllers
                 return NotFound();
             }
 
-            var movies = await _context.Movies
-                .FirstOrDefaultAsync(m => m.MoviesId == id);
-            if (movies == null)
+            var employee = await _context.Employees
+                .FirstOrDefaultAsync(m => m.EmployeeId == id);
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            return View(movies);
+            return View(employee);
         }
 
-        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movies = await _context.Movies.FindAsync(id);
-            if (movies != null)
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee != null)
             {
-                _context.Movies.Remove(movies);
+                _context.Employees.Remove(employee);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MoviesExists(int id)
+        private bool EmployeeExists(int id)
         {
-            return _context.Movies.Any(e => e.MoviesId == id);
+            return _context.Employees.Any(e => e.EmployeeId == id);
         }
     }
 }

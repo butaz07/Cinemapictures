@@ -9,16 +9,16 @@ namespace Cinemapictures.Models.Entities
         public int InvoiceId { get; set; }
 
         public int ClientId { get; set; }
-        public Client Client { get; set; }
+        public Client? Client { get; set; }
 
         public int EmployeeId { get; set; }
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
 
         public int MovieId { get; set; }
-        public Movies Movie { get; set; }
+        public Movies? Movie { get; set; }
 
-        public int RentId { get; set; }
-        public Rent Rent { get; set; }
+        public int? RentId { get; set; }
+        public Rent? Rent { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Subtotal { get; set; }
@@ -29,5 +29,12 @@ namespace Cinemapictures.Models.Entities
         public DateTime Date { get; set; }
 
         public double TotalAmount { get; set; }
+
+        // Fields for Rental History and Fines
+        public int NumberOfDays { get; set; }
+        public DateTime DueDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal FineAmount { get; set; }
     }
 }

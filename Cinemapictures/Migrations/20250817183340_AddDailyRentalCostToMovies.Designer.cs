@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cinemapictures.Migrations
 {
     [DbContext(typeof(DataContex))]
-    partial class DataContexModelSnapshot : ModelSnapshot
+    [Migration("20250817183340_AddDailyRentalCostToMovies")]
+    partial class AddDailyRentalCostToMovies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,14 +142,8 @@ namespace Cinemapictures.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("FineAmount")
-                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
@@ -154,14 +151,8 @@ namespace Cinemapictures.Migrations
                     b.Property<int?>("MoviesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("NumberOfDays")
-                        .HasColumnType("int");
-
                     b.Property<int?>("RentId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("ReturnDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Subtotal")
                         .HasColumnType("decimal(18, 2)");

@@ -1,0 +1,62 @@
+
+@model IEnumerable<Cinemapictures.Models.Entities.Invoice>
+
+@{ 
+    ViewData["Title"] = "Historial de Alquileres";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Película</th>
+            <th>Fecha de Alquiler</th>
+            <th>Fecha de Devolución</th>
+            <th>Fecha Retornado</th>
+            <th>Multa</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Client.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Movie.MovieTitle)</td>
+                <td>@item.Date.ToShortDateString()</td>
+                <td>@item.DueDate.ToShortDateString()</td>
+                <td>@(item.ReturnDate?.ToShortDateString() ?? "N/A")</td>
+                <td>@item.FineAmount.ToString("C")</td>
+                <td>
+                    @{
+                        var status = "";
+                        if (item.ReturnDate.HasValue)
+                        {
+                            status = "Devuelto";
+                        }
+                        else if (DateTime.Now > item.DueDate)
+                        {
+                            status = "Atrasado";
+                        }
+                        else
+                        {
+                            status = "En Curso";
+                        }
+                        @status
+                    }
+                </td>
+                <td>
+                    @if (!item.ReturnDate.HasValue)
+                    {
+                        <form asp-action="Return" asp-route-id="@item.InvoiceId" method="post">
+                            <button type="submit" class="btn btn-success btn-sm">Devolver</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -11,10 +11,6 @@ namespace Cinemapictures.Models.Entities
         [MaxLength(100)]
 
         public string Description { get; set; }
-        [MaxLength(100)]
-
-        public string Movies { get; set; }
-        [MaxLength(100)]
 
         public List<Movies> movies { get; set; }
 

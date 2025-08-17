@@ -17,7 +17,6 @@ namespace Cinemapictures.Models.Entities
         public string Email { get; set; }
         [MaxLength(100)]
         public string PhoneNumber { get; set; }
-        [MaxLength(50)]
 
         public double Salary { get; set; }
         [MaxLength(50)]
@@ -30,6 +29,6 @@ namespace Cinemapictures.Models.Entities
         public string DNI { get; set; }
         [MaxLength(50)]
 
-        public List<Invoice> Invoices { get; set; }
+        public List<Invoice> Invoices { get; set; } = new List<Invoice>();
     }
 }

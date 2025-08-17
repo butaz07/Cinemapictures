@@ -9,12 +9,10 @@ namespace Cinemapictures.Models.Entities
         [Required, MaxLength(150)]
 
         public int Cost { get; set; }
-        [MaxLength(100)]
 
         public int Period_of_time { get; set; }
-        [MaxLength(100)]
 
-        public List<Movies> Movies { get; set; }
+        public List<Movies> Movies { get; set; } = new List<Movies>();
 
 
 

@@ -24,6 +24,6 @@ namespace Cinemapictures.Models.Entities
 
         public string Country { get; set; }
         [MaxLength(50)]
-        public List<Invoice> Invoices { get; set; } = new List<Invoice>();
+        public List<Invoice> Invoices { get; set; } = [];
     }
 }

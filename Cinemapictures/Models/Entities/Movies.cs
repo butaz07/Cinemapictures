@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cinemapictures.Models.Entities
 {
@@ -10,15 +11,15 @@ namespace Cinemapictures.Models.Entities
         public string MovieTitle { get; set; }
         [MaxLength(50)]
 
-        public string Kind { get; set; }
-        [MaxLength(150)]
+        public required string Kind { get; set; }
         public int Year { get; set; }
         [MaxLength(50)]
         public string Director { get; set; }
         [MaxLength(50)]
         public string language { get; set; }
-        [MaxLength(100)]
-        public List<Invoice> Invoices { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal DailyRentalCost { get; set; }
+        public List<Invoice> Invoices { get; set; } = new List<Invoice>();
 
 
     }
