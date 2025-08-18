@@ -65,7 +65,7 @@ namespace Cinemapictures.Controllers
             {
                 invoice.NumberOfDays = NumberOfDays;
                 invoice.DueDate = invoice.Date.AddDays(NumberOfDays);
-                invoice.FineAmount = 0; // Default fine to 0 on creation
+                invoice.FineAmount = 0; 
 
                 _context.Add(invoice);
                 await _context.SaveChangesAsync();
@@ -169,7 +169,6 @@ namespace Cinemapictures.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Action for Rental History
         public async Task<IActionResult> History()
         {
             var rentalHistory = await _context.Invoices
@@ -180,7 +179,6 @@ namespace Cinemapictures.Controllers
             return View(rentalHistory);
         }
 
-        // Action to process a return
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Return(int id)
@@ -191,7 +189,7 @@ namespace Cinemapictures.Controllers
                 return NotFound();
             }
 
-            if (invoice.ReturnDate == null) // Only process if not already returned
+            if (invoice.ReturnDate == null) 
             {
                 invoice.ReturnDate = DateTime.Now;
 
